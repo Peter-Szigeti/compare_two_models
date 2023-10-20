@@ -1,0 +1,138 @@
+\documentclass{article}
+
+\usepackage{lipsum} % for dummy text
+\usepackage{multicol}
+
+\begin{document}
+% title after this
+\title{ChatGPT és más LLM-ek alkalmazása az egészségügy területén
+}
+\author{TENMA}
+\date{-42}
+\maketitle
+% 1.Introduction
+\section{Bevezetés}
+\begin{multicols}{2}
+    Magyarországon ma a hanyatló demográfia és a csökkenő egészségügyi állományra való tekintettel, életbe vágó lenne, hogy az orvosok és szakdolgozók az idejüket maximálisan a betegekre tudják fókuszálni. Ennek az egyik legkézenfekvőbb módja, hogy a szaktudást nem igénylő feladatokat, majd ha ez sikerrel járt, akkor a különösebb probléma megoldást nem igénylő feladatukat levegyük a vállukról. 
+    Betegfelvétel, időpontfoglalás, anamnézis felvétel, panaszok elmondása és meghallgatása, tájékoztatás, tájékozódás, leletezés és zárójelentés írás. Mi a közös ezekben a kórházba járással kapcsolatos tevékenységekben? Mindegyik alapja a szöveges információ közlés és értelmezés, vagyis elméletben kiegészíthetjük, helyettesíthetőek nyelvi modellek segítségével. Ennek, az emberek, az egészségügy és a programok közötti interakciónak lehetőségeit és hatásait szeretnénk vizsgálni. Célunk a nagy nyelvi modellek (LLM) (1)ismertetése különös tekintettel az egészségügyben való alkalmazásukra. Szeretnénk ismertetni a ma már elérhető megoldásokat és alkalmazásuk potenciális előnyeit, hátrányait. 
+    
+\end{multicols}
+% section end
+\section{Rövid ismertető a nagy nyelvi modellekről, ChatGPT}
+\begin{multicols}{2}
+A nagy nyelvi modellek(LLM) olyan nyelvi modellek, melyek rendkívül nagy méretűek. Nyelvi modellként, arra vannak hangolva, hogy bármely szó(vagy token) szekvencia alapján, meghatározzák, hogy melyik szó(vagy token) a legvalószínűbb, az által, hogy egy adott szótárhoz egy valószínűségi eloszlást rendelnek a kapott szekvencia alapján. A nyelvi modell az egy leképezés, mely egy szó-szekvenciát egy valószínűségi eloszlásra képez. Ez a leképezés az LLM-ek esetében, gyakorlatilag kivétel nélkül, egy neurális háló, a Transzformer segítségével valósul meg. A leképezést paramétereik segítségével valósítják meg, melyeket nagy mennyiségű szöveg alapján lehet “beállítani”, egy jól meghatározott veszteség-függvény és a backpropagation nevű algoritmus segítségével. Azért hívják őket nagy nyelvi modelleknek, mert több száz milliárd paraméterrel rendelkeznek.. Ez végső soron az interneten található szöveg jelentős hányada alapján behangolt autocompleter. Ez még nem fog tudni velünk beszélgetni. Ezt a model t foundation modelnek nevezik, ilyen például a GPT-2, GPT-3 és a GPT-3.5 és ahhoz, hogy ez valamilyen értelmes feladatot tudjon elvégezni, finomhangolni kell. Ezt a ChatGPT esetében úgy tették, amelynél az volt a cél, hogy egy csevegő botot hozzanak létre, hogy csináltak egy adatbázist rengeteg lehetséges bemenetből. Ezekre utána rengeteg ember segítségével, meghatározták, hogy egy internetes társalgásban mit válaszolna egy ember, majd ez alapján finomhangolták a modelt felügyelt tanulás segítségével. Második lépés alapján a promptok alapján, már a modellel generáltak több választ is az adott promptra, majd ezeket szintén rengeteg ember sorrendbe rakta, aszerint, hogy melyiket találta a leginkább illőnek a prompthoz. Ez alapján készítettek egy jutalom modelt, mely harmadik lépésben már a model által generált promptokhoz a model által generált válaszok alapján finomhangolta a modelt. 
+Viszont már az első lépés is elég lehet, hogy egy jól működő eszközt kapjunk. 
+Az eddig készített klinikai LLM-ek általában két fő adatforrás alapján a PubMed-en található összes abstract és open-access cikk alapján, illetve MIMIC-III/IV adatbázis alapján(mely Beth Israel Deaconess Medical Center 2001 és 2012 közötti összes egészségügyi dokumentumát tartalmazza), a ChatGPT első lépéséhez hasonlóan lettek finomhangolva.
+\end{multicols}
+\section{A nagy nyelvi modellek alkalmazási lehetőségei az egészségügyben
+}
+%subsection
+\begin{multicols}{2}
+\subsection{Segédpilóta az orvosoknak}
+A GitHub Copilot egy olyan programozóknak készített segédprogram, mely rendkívüli módon megkönnyíti a fejlesztést. Miközben a programozó írja valós időben a kódját, a program elküldi az OpenAI szerverére az addig leírt kódot(ezt egy rövid angol szövegként kell elképzelni), ami alapján az OpenAI erre hangolt modelje javaslatokat ad a programozónak, hogy hogyan folytassa a kódját, amit utána a programozó vagy el tud fogadni egy gombnyomással, vagy pedig ignorálni tudja. Ez gyakorlatilag olyan, mint az okostelefon billentyűzeteken található auto-complete, ami szintén egy nyelvi model, de amíg az csak szavakat képes befejezni, a GitHub copilot egész mondatokat képes, sőt akár mondatok alapján is tud mondatokat írni. Ez azért rendkívül hasznos, mert a fejlesztő le tudja írni egy pár mondatban, hogy nagyjából mit szeretne és utána a kódolás alatt ez alapján kap javaslatokat. Például, ha éppen nem emlékszik egy keretrendszer adott függvényének a nevére, a Copilottal sokkal gyorsabban meg lehet találni, mint a keretrendszer dokumentációjában. Illetve nagyban meggyorsítja magát a gépelést is, mert az egyszerű logikán alapuló részeket gyakorlatilag automatikusan kitölti.
+Ez az LLM úgy készült, hogy a GPT-3at finomhangolták, a GitHubon található összes kóddal.
+Ennek a példájára lehet elkészíteni az orvosok és asszisztensek számára egy másodpilótát, mely nagyban meggyorsítaná az írási sebességet, illetve automatikusan ki tudná tölteni a különböző kódokat. Nagyvonalakban ehhez szükség van egy magyar nyelvű foundation modelre, majd ezt minél nagyobb mennyiségű egészségügyi dokumentum alapján finomhangolni kell. Ez a github copilot esetén nagyjából 159 GB-nyi python kódot jelentett.
+Biztonsági szempontból viszont oda kell figyelni arra, hogy hacsak nem lesz minden kórháznak, rendelőnek és háziorvosi praxisnak egy saját szervergépe, ami kifejezetten erre a célra lett építve, akkor az orvosok egy része ezt a felhőn keresztül kell majd, hogy használja(a GitHub Copilot is felhő alapú). Ez viszont biztonsági kockázattal járhat, mivel egy rendelésen rengeteg személyes adat, vagy titok elhangozhat, melyek ha rossz kezekbe kerülnek negatívan érintheti a pácienseket és az orvosokat is. Ezért a model fejlesztésénél figyelni kell majd rá, hogy személyes adatokat lehetőleg ne kapjon a model bemenetnek, vagy ezek legyenek anonimizálva.
+
+\subsection{Beteg történetének elemzése}
+Magyarországon a fejlődő adattárolás és dokumentáció hatására minden betegnek több oldalnyi kórházi története van és ez a szám csak egyre  növekszik. Sem a dokumentumok terjedelme sem a megfogalmazásuk nem segíti a beteg történetének gyors megismerését sokszor egy 5 oldalas zárójelentésben csupán néhány mondat tér el az előzőtől vagy csak egy két gyógyszernév. Az ilyen információt nehéz feldolgozni, nagyon könnyű figyelmen kívül hagyni valamit. Ezekben a helyzetekben tud rengeteget segíteni egy értelmes összefoglalása a szövegnek, amiben a LLM algoritmus kiemelkedő teljesítményt tudnak nyújtani. Ezt szeretnénk demonstrálni egy teszt anamnézis és a ChatGPT segítségével:
+
+
+Teszt anamnézis: (2)
+Főpanasz: Rogers asszony 56 éves nő,akinek az elmúlt héten mellkasi fájdalmai voltak. 
+A jelenlegi betegség története Ez az első felvétele ennek az 56 éves nőnek, aki azt állítja, hogy a felvételt megelőző egy hétig a szokásos jó egészségi állapotában volt. Ekkor észlelte a hirtelen (néhány másodperc és egy perc között) fellépő mellkasi fájdalmat, amelyet tompának és fájdalmasnak ír le. A fájdalom a bal szegycsonti részen kezdődött, és a nyakáig sugárzott. A fájdalom első epizódja egy héttel ezelőtt történt, amikor a nap közepén a kertjében dolgozott. Állítása szerint körülbelül 45 percig dolgozott, és a fájdalom megjelenése előtt kezdte magát fáradtnak érezni. A kellemetlen érzést légszomj kísérte, de társuló tünetei nem voltak izzadás, hányinger vagy hányás. A fájdalom körülbelül 5-10 percig tartott, és megszűnt, amikor bement a házba, és hűvös helyen pihent. 
+Az egy héttel ezelőtti kezdeti fájdalom óta 2 további fájdalmas epizódja volt, amelyek minősége és helye hasonló volt az első epizódhoz. Három nappal ezelőtt a kutyasétáltatás közben 15 perces fájdalma volt, amely pihenéssel megszűnt. Ma este egy 30 percig tartó, alvásból felébresztett fájdalom epizódja volt, ami miatt felkereste a sürgősségi osztályt. A fájdalom enyhítésére a pihenésen kívül semmilyen más konkrét intézkedést nem próbált tenni. A fájdalom epizódjai során nem írt le más kísérő tüneteket, beleértve a szédülést vagy a szívdobogást. Ezen epizódok során légszomj lép fel, de nem ír le más megerőltető légzési nehézlégzést, ortopnoét vagy paroxizmális éjszakai légzési nehézlégzést. A fájdalom mozgásra nem változik, nincs összefüggés az étkezéssel, nincs reflux, nincs tapintható fájdalom. Soha nem mondták neki, hogy szívproblémái vannak, korábban soha nem volt mellkasi fájdalma, nincs klaudikáció. magas vérnyomást diagnosztizáltak nála 3 évvel ezelőtt, nem dohányzik és nincs cukorbetegsége. Hormonpótló terápiát nem szed. A családban előfordult korai koronária betegség. Koleszterinszintjét nem ismeri. 1994-ben eltávolították a méhét. 1998-ban bütyök eltávolítást végeztek a lábfején. 1998-ban magas vérnyomás miatt ismeretlen gyógyszert szedett, amit fél év után abbahagyott szédülés miatt. 1990-ben gyomorfekéllyel diagnosztizálták, ami elmúlt 3 hónap cimetidin szedés után. Nincsen rák, szív vagy tüdőbetegség. Allergiás penicillinre. Panaszkodik 
+epigasztrikus fájdalomra, égető jellegű, körülbelül
+havonta kétszer, amelyet elsősorban éjszaka észlel. 
+ 
+
+Fordítás: www.DeepL.com/Translator 
+
+
+ChatGPT 4-nek a fenti teszt anamnézis megadása után tettük föl az alábbi összefoglaló kérdéseket:(a ChatGPT válaszait kék háttér jelöli)
+
+Prompt: Milyen műtéteket végeztek a betegen?
+A betegen az alábbi műtéteket végezték el:
+1994-ben méheltávolítás (hysterektómia).
+1998-ban bütyök eltávolítás a lábfején.
+Ezek a műtéti beavatkozások a rendelkezésre álló információk alapján történtek.
+
+Prompt: Milyen gyógyszereket szedhetett a beteg?
+A beteg történetében az alábbi gyógyszerek szerepelnek, amelyeket a beteg valószínűleg szedett vagy szedhetett:
+Cimetidin: Ezt a gyógyszert 1990-ben gyomorfekély kezelésére írták fel neki, és 3 hónapig szedte.
+Ismeretlen magas vérnyomás gyógyszer: 1998-ban magas vérnyomás kezelésére írták fel neki, de fél év után abbahagyta a szedését szédülés miatt.
+Ezen gyógyszerek alapján nem tudjuk pontosan azonosítani, hogy melyik vérnyomáscsökkentő gyógyszert szedte a beteg 1998-ban. A magas vérnyomás kezelésére számos különböző gyógyszercsoport és hatóanyag áll rendelkezésre, mint például a béta-blokkolók, ACE-gátlók, ARB-k, kalciumcsatorna-gátlók, tiazid-diuretikumok stb. A szédülés sokféle vérnyomáscsökkentő gyógyszer mellékhatásaként is megjelenhet, így további információk nélkül nem tudjuk pontosan azonosítani, hogy melyiket szedte.
+
+Ebből a válaszból a modell kifelejtette a penicillin származékokat, hiszen valószínűleg azt is kapott, ha tudják, hogy allergiás rá
+
+Prompt: Milyen gyógyszert nem szedhet a beteg?
+A beteg allergiás a penicillinre, tehát nem szedhet penicillin-alapú antibiotikumokat.
+Ez fontos információ minden orvosi beavatkozás, gyógyszeres kezelés vagy sürgősségi ellátás során, mivel a penicillin-allergia esetén a beteg súlyos allergiás reakciót válthat ki, ha penicillin-alapú gyógyszert kap.
+
+Látható, hogy a ChatGPT képes értelmes összegzést írni, bár egy eset nem mérvadó jól szemlélteti a modellben rejlő lehetőségeket.
+
+\subsection{Anamnézis felvétele}
+Az anamnézis(kórtörténet) felvételénél nagy előnyei lehetnek egy nagy nyelvi modellnek, de az valószínűtlen, hogy ez teljesen kiválthatja az orvos által felvett anamnézist, tekintve hogy az anamnézis felvétel egy része szorosan összefonódik a fizikális vizsgálattal. Amiben ez rengeteget tudna segíteni az orvosnak, az a plusz információ mennyiség. Magyarországon a betegek összes kórházi látogatásáról készült dokumentum elérhető az EESZT-n keresztül. Általában, amikor egy orvos először találkozik a beteggel, nem nézi át rögtön az összes eddigi dokumentumát a betegnek, mielőtt kikérdezi. Viszont, egy nagy nyelvi model ezeket azonnal eltudja olvasni és ezek alapján is tud kérdezni. Általában egy rendelés alatt egy orvosnak nincs arra ideje, hogy egy részletes kórtörténetet vegyen fel. Tekintve, hogy az anamnézis felvétel egy nagy része fixált kérdésekből áll, a további része pedig az addigi válaszok alapján való további kérdések feltételéből áll, elképzelhető, hogy ez automatizálható egy LLM segítségével. Ennek egy formája, kezdetben például úgy nézhet ki, hogy a betegeknek előre kiküldenek egy linket, ami egy erre fejlesztett aplikációra mutat. Itt válaszolhatnak fix kérdésekre, majd ezeket megnézi egy LLM és ha nem tartja a választ kielégítőnek vagy további információkra van szüksége, egy adott kérdéshez, akkor azt a beteg beírhatja. Majd a válaszok alapján az LLM további kérdéseket tehet fel, amiket az applikáció szintén rögzít. Ezután a válaszokat egy másik LLM összefoglalhatja, egy előre meghatározott formátumban. Ezt egyrészt az orvos gyorsan eltudja olvasni és így neki is könnyebb lesz(és ezáltal gyorsabb) kérdezni, másrészt ha súlyos betegségre van gyanú, akkor feljebb hozhatná a beteget a rendszer a várólistában. Tehát az egyik lehetőség egy olyan részletes anamnézis felvételére képes applikáció fejlesztése, melyben a beteg egy standard kérdőívet tudna kitölteni otthon, majd ezeket egy erre a célra kifejlesztett LLM elolvasná és szükség esetén a hiányzó információkat elkérné a betegtől, illetve a válaszai és akár az összes EESZT-s dokumentuma alapján egyszerre újabb kérdéseket tudna feltenni, majd erről az orvosnak egy összefoglalót küldene. Egy másik hasznos lehetőség, ha az LLM(jelen esetben egy chatbot) csak az EESZT-s dokumentumokat olvasná el, majd miután az orvos felvette az anamnézist és felvitte a számítógépbe, azt is elolvasná és a kettő forrás kombinációjával segíthetne az orvosnak a kérdéseiben, illetve javaslatokat adhatna neki.
+\subsection{Betegtájékoztatás}
+Az orvostudomány fejlődésével egyre gyorsabban távolodnak az egészségügyi terápiák és kezelések ismeretei az átlag ember műveltségétől. Egyre nagyobb probléma, hogy az alapból is túlterhelt orvosnak még századszor is el kell magyarázni egy értetlen betegnek az általa alapvetőnek tartott koncepciókat. Ennek eredménye a betegek alul tájékozottsága és a kölcsönös frusztráció az orvos-beteg kapcsolatban. Ezt a típusú problémát nagyon jól lehetne orvosolni a nagy nyelvi modellek segítségével, hiszen képesek bonyolult koncepciókat újrafogalmazni, leegyszerűsíteni és képes nagyon megértő módon fogalmazni. Szeretnénk ezt is demonstrálni a ChatGPT segítségével. (a ChatGPT válaszait kék háttér jelöli)
+
+Tegyük föl, hogy a már használt anamnézisben szerepelt Rogers asszonynak egy koronarográfiás vizsgálatot ír fel a kardiológusa. A koronarográfia jó példa, hiszen egy idegen szó és összetett implikációi vannak, sok kérdést vethet föl egy aggódó vagy kíváncsi betegben amit az orvosa már nem szívesen válaszolna meg és nehéz értelmezhető válaszokat találni rá az interneten.
+
+Prompt: Magyarázd el, hogy mi a koronarográfia egy orvostanhallgatónak!
+
+Persze, szívesen!
+A koronarográfia (más néven szív katéterizálás vagy angiográfia) egy invazív képalkotó eljárás, amelyet a szív koszorúsereinek vizsgálatára használnak, különösképpen arra, hogy megtudják, van-e bármilyen elzáródás vagy szűkület ezen erekben.
+Az eljárás lényege:
+Hozzáférés: A beteget helyi érzéstelenítés mellett egy speciális hosszú, rugalmas cső, egy katéter behelyezésével vizsgálják. A katétert leggyakrabban a combartéria vagy a csukló artérián keresztül juttatják be a szervezetbe.
+Kontrasztanyag: Amikor a katétert a koszorúserekhez vezetik, kontrasztanyagot fecskendeznek be a katéteren keresztül, amely röntgenfelvételeken láthatóvá teszi az ereket.
+Képalkotás: Miután a kontrasztanyagot befecskendezték, röntgenfelvételeket készítenek a szív különböző szögekből. Ezek a felvételek segítenek az orvosnak meghatározni, hogy az erekben vannak-e szűkületek vagy elzáródások.
+Eredmények: A koronarográfia segítségével az orvos láthatja, hogy a koszorúereken belül milyen mértékű az elzáródás vagy a szűkület. Ha jelentős szűkületet vagy elzáródást találnak, akkor lehetőség van az elzáródás megnyitására angioplasztika és stent beültetés segítségével, gyakran azonnal a koronarográfia után.
+Indikációk: A koronarográfia többek között olyan esetekben javasolt, mint:
+Mellkasi fájdalom vagy angina pectoris gyanúja esetén
+Szívinfarktus vagy miokardiális ischaemia megerősítése
+Szívkatéterezés vagy műtét előtt
+A korábbi kezelések, mint például a bypass műtét vagy a stent beültetés után
+Rizikók: Mint minden invazív beavatkozásnál, a koronarográfia során is vannak kockázatok, például a kontrasztanyag allergiás reakciót válthat ki, vagy a beavatkozás során sérülhetnek az erek. Azonban ezek a kockázatok viszonylag alacsonyak, és az eljárás nagy előnyt jelent a szív- és érrendszeri betegségek diagnosztizálásában és kezelésében.
+Remélem, ez segített megérteni a koronarográfia alapjait! Ha további kérdéseid vannak, szívesen válaszolok.
+
+
+
+Prompt: Magyarázd el, hogy mi a koronarográfia egy aggódó 8 éves kisgyereknek, akinek a nagyapját fogják megvizsgálni!
+
+Persze!
+"Kedves [gyerek neve], tudod, a szívünkben vannak kis csövek, ezeket hívjuk ereinek. Ezek a csövek szállítják az oxigént és a táplálékot a szívünknek, hogy jól működjön. Néha ezek a kis csövek beszűkülnek vagy eldugulnak, mint egy eldugult szívószál. Amikor ez történik, az orvosoknak meg kell nézniük, hogy miért történik ez.
+A koronarográfia egy olyan vizsgálat, ahol az orvosok egy vékony drótot juttatnak a szívbe egy kis lyukon keresztül, amit az ember kezén vagy lábán készítenek. Ezen a dróton egy kis kamera van, ami segít az orvosoknak látni a szívben lévő kis csöveket. Amikor megvizsgálják a csöveket, egy különleges folyadékot (amit csak az orvosok látnak) fecskendeznek bele, hogy még jobban lássák, van-e bármi, ami akadályozza a vér áramlását.
+Nem kell aggódnod, a nagyapád nem fogja érezni ezt a kis drótot vagy a kamerát, mert az orvosok gondoskodnak róla, hogy minden kényelmes legyen. És amikor az orvosok befejezik a vizsgálatot, nagypapa hamarosan újra a régi lesz, és talán még jobban is érzi magát, mert az orvosoknak most több információnk lesz arról, hogyan segíthetnek neki."
+Remélem, ez segít megnyugtatni a kisgyereket. Ha további kérdéseid vannak, szívesen válaszolok!
+
+
+
+Persze!
+Képzeld el, hogy a tested egy hálózat sok-sok csőből, amelyek a vért szállítják a tested minden részébe. Ezek közül a csövek közül néhány a szívedben található és fontosak, mert a szíved táplálásához szükséges vért szállítják. A koronarográfia egy vizsgálat, ami segít az orvosoknak megnézni, hogy ezek a kis csövek rendben vannak-e.
+Az eljárás alatt egy kis, rugalmas csövet, vagyis egy katétert helyeznek be egy érbe, gyakran a csuklódban vagy a combodban. A katétert aztán az erek mentén, az emberi test "útjain" keresztül vezetik a szívbe. Ezt a folyamatot nem látod, de érezhetsz egy kis nyomást vagy furcsa érzést, ahogy a katétert elvezetik.
+Amikor a katéter a helyén van, az orvosok egy speciális folyadékot fecskendeznek bele, amit "kontrasztanyagnak" hívnak. Ennek a folyadéknak a segítségével az orvosok láthatják, hogy a szívbeli csövek hogyan működnek. Mivel te nem láthatod ezt a folyamatot, az érzései lesznek a legfontosabbak. Ebben a fázisban érezheted a kontrasztanyag meleg érzését, ami a testeden keresztül halad.
+Az eljárás alatt fekszel egy asztalon, és bár nem fogod látni az orvost vagy a gépeket, hallhatod azok hangjait és az orvosod utasításait. Az egész eljárás alatt érzéstelenítőt kapnak a beavatkozás helyén, így nem érez fájdalmat, csak a fent említett nyomást vagy melegséget.
+Amikor az orvosok minden szükséges információt megkaptak, eltávolítják a katétert és egy kis kötést helyeznek a beavatkozás helyére. Ezt követően néhány órán át pihenned kell, de hamarosan újra a megszokott életedet élheted.
+Remélem, ez segített abban, hogy képet alkothass arról, mire számíthatsz a koronarográfia során. Ha bármilyen további kérdésed van, szívesen válaszolok!
+
+Látható, hogy a modell képes teljesen különböző stílusokban is előadni a magyarázatot, ki lehet jelenteni, hogy sok betegnek már ma is képes lenne akár az orvosánál jobb tájékoztatást is adni. 
+
+\end{multicols}
+\begin{multicols}{2}
+    \section{Összefoglalás}
+    A fennt leírt alkalmazási példákból is látszik, hogy rengeteg potenciálisan hasznos és az orvosok számára időmegtakarító alkalmazási lehetősége van a nagy nyelvi modelleknek. Viszont azt nagyon fontos hangsúlyozni, hogy a vak fejlesztése ezeknek a modelleknek rengeteg kockázattal jár. Egyrészt ezek a modellek jelenleg annyira nagyok, hogy jelenleg csak a felhő alapú megoldások elképzelhetőek. Tekintve, hogy egy ilyen applikációban rengeteg érzékeny és személyazonosításra alkalmas információ keringene, felmerül a visszaélések kockázata. Szerencsére az EESZT miatt, Magyarországnak már van tapasztalat, a felhő alapú megoldások fejlesztésében, ezért talán ezt az akadályt könnyebb lesz majd leküzdeni. A másik komoly probléma, hogy a fenti applikációk fejlesztése rendkívül erőforrásigényes. Ezért mielőtt egy ilyen bárki is elkezdte fejleszteni egy kifejezett célra, feltétlenül meg kell győződnie arról, hogy ezt az orvosok utána tudják és ténylegesen akarják használni részletes felmérések segítségével. Ezenkívül az alkalmazás fejlesztése alatt is érdemes bevonni az orvosokat, tekintve, hogy végsősoron ők fogják használni majd. Végül a kész terméket szigorúan le kell tesztelni potenciális biztonsági problémák vagy az LLM-ek természetéből adódó halucinációk gyakoriságára és relevanciájára. Ahhoz, hogy ez megvalósulhasson, a terméket lehetőleg iteratívan kell elérhetővé tenni az orvosok vagy a lakosság számára.
+
+\end{multicols}
+\begin{thebibliography}{9}
+\bibitem{gpt3}
+DeepL Translate: The world's most accurate translator,
+\bibitem{gpt3}
+https://www.nature.com/articles/s41746-023-00879-8.
+\bibitem{gpt3}
+https://openai.com/blog/chatgpt
+\bibitem{gpt3}
+Rouse, Margaret. “What is a Large Language Model (LLM.” Techopedia, 28 July 2023)
+\bibitem{gpt3}
+Test Patient. www.med.unc.edu/medclerk/wp-content/uploads/sites/877/2018/10/
+\end{thebibliography}
+\end{document}

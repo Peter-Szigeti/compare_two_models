@@ -1,0 +1,37 @@
+PWD c:\Users\Peti\Documents\Biológiai Számítások\dendrite_project\Documentation
+INPUT C:\Users\Peti\AppData\Local\MiKTeX\miktex\data\le\pdftex\pdflatex.fmt
+INPUT c:\Users\Peti\Documents\Biológiai Számítások\dendrite_project\Documentation\weekly_meeting_notes_template.tex
+OUTPUT weekly_meeting_notes_template.log
+INPUT C:\Users\Peti\AppData\Local\Programs\MiKTeX\tex\latex\base\article.cls
+INPUT C:\Users\Peti\AppData\Local\Programs\MiKTeX\tex\latex\base\article.cls
+INPUT C:\Users\Peti\AppData\Local\Programs\MiKTeX\tex\latex\base\size10.clo
+INPUT C:\Users\Peti\AppData\Local\Programs\MiKTeX\tex\latex\base\size10.clo
+INPUT C:\Users\Peti\AppData\Local\Programs\MiKTeX\tex\latex\base\size10.clo
+INPUT C:\Users\Peti\AppData\Local\Programs\MiKTeX\tex\latex\l3backend\l3backend-pdftex.def
+INPUT C:\Users\Peti\AppData\Local\Programs\MiKTeX\tex\latex\l3backend\l3backend-pdftex.def
+INPUT .\weekly_meeting_notes_template.aux
+INPUT .\weekly_meeting_notes_template.aux
+INPUT weekly_meeting_notes_template.aux
+OUTPUT weekly_meeting_notes_template.aux
+INPUT C:\Users\Peti\AppData\Local\Programs\MiKTeX\fonts\tfm\public\cm\cmr12.tfm
+INPUT C:\Users\Peti\AppData\Local\Programs\MiKTeX\fonts\tfm\public\cm\cmbx12.tfm
+INPUT C:\Users\Peti\AppData\Local\Programs\MiKTeX\fonts\tfm\public\cm\cmr12.tfm
+INPUT C:\Users\Peti\AppData\Local\Programs\MiKTeX\fonts\tfm\public\cm\cmbx12.tfm
+INPUT C:\Users\Peti\AppData\Local\Programs\MiKTeX\fonts\tfm\public\cm\cmbx10.tfm
+OUTPUT weekly_meeting_notes_template.pdf
+INPUT C:\Users\Peti\AppData\Local\MiKTeX\fonts\map\pdftex\pdftex.map
+INPUT weekly_meeting_notes_template.aux
+INPUT C:\Users\Peti\AppData\Local\Programs\MiKTeX\fonts\type1\public\amsfonts\cm\cmbx10.pfb
+INPUT C:\Users\Peti\AppData\Local\Programs\MiKTeX\fonts\type1\public\amsfonts\cm\cmbx10.pfb
+INPUT C:\Users\Peti\AppData\Local\Programs\MiKTeX\fonts\type1\public\amsfonts\cm\cmbx12.pfb
+INPUT C:\Users\Peti\AppData\Local\Programs\MiKTeX\fonts\type1\public\amsfonts\cm\cmbx12.pfb
+INPUT C:\Users\Peti\AppData\Local\Programs\MiKTeX\fonts\type1\public\amsfonts\cm\cmex10.pfb
+INPUT C:\Users\Peti\AppData\Local\Programs\MiKTeX\fonts\type1\public\amsfonts\cm\cmex10.pfb
+INPUT C:\Users\Peti\AppData\Local\Programs\MiKTeX\fonts\type1\public\amsfonts\cm\cmmi10.pfb
+INPUT C:\Users\Peti\AppData\Local\Programs\MiKTeX\fonts\type1\public\amsfonts\cm\cmmi10.pfb
+INPUT C:\Users\Peti\AppData\Local\Programs\MiKTeX\fonts\type1\public\amsfonts\cm\cmr10.pfb
+INPUT C:\Users\Peti\AppData\Local\Programs\MiKTeX\fonts\type1\public\amsfonts\cm\cmr10.pfb
+INPUT C:\Users\Peti\AppData\Local\Programs\MiKTeX\fonts\type1\public\amsfonts\cm\cmr7.pfb
+INPUT C:\Users\Peti\AppData\Local\Programs\MiKTeX\fonts\type1\public\amsfonts\cm\cmr7.pfb
+INPUT C:\Users\Peti\AppData\Local\Programs\MiKTeX\fonts\type1\public\amsfonts\cm\cmsy10.pfb
+INPUT C:\Users\Peti\AppData\Local\Programs\MiKTeX\fonts\type1\public\amsfonts\cm\cmsy10.pfb
